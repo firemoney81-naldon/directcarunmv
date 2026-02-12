@@ -1,23 +1,513 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "2026년 10월 자동차보험료 비교견적 서비스",
+      "serviceType": "자동차보험 비교",
+      "provider": {
+        "@type": "Organization",
+        "name": "Automobile Insurance Comparison Center",
+        "url": "https://yourdomain.com",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+82-10-1234-5678",
+          "contactType": "고객 서비스"
+        }
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "대한민국"
+      },
+      "description": "2026년 10월 기준으로 주요 보험사들의 자동차보험 할인 혜택, 특약, 평균 보험료 등을 비교하여 최적의 상품을 추천하는 온라인 비교견적 플랫폼입니다.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "자동차보험 비교 서비스 목록",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "다이렉트 자동차보험 비교견적"
+            },
+            "description": "다이렉트 채널을 통한 저렴한 자동차보험료 실시간 비교 견적 서비스"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "마일리지/블랙박스 할인 특약 비교"
+            },
+            "description": "각 보험사별 마일리지 특약, 블랙박스 할인율 등 주요 혜택 상세 비교"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "자녀 할인 및 안전장치 할인 특약 비교"
+            },
+            "description": "자녀 할인 특약, 첨단 안전장치 장착 차량 할인율 상세 비교"
+          }
+        ]
+      }
+    }
+    </script>
+
+    <style>
+      :root {
+        --primary-color: #004a8f;
+        --secondary-color: #ffcc00;
+        --accent-color: #f0f8ff;
+        --font-color: #333;
+        --bg-color: #ffffff;
+        --light-gray: #f4f4f4;
+        --border-color: #ddd;
+      }
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.8;
+        background-color: var(--light-gray);
+        color: var(--font-color);
+      }
+      header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 2rem 1rem;
+        text-align: center;
+      }
+      header h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+      header p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 1rem;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: color 0.3s ease;
+      }
+      nav a:hover {
+        color: var(--secondary-color);
+      }
+      main {
+        max-width: 1000px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: var(--bg-color);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        border-radius: 12px;
+      }
+      h2 {
+        color: var(--primary-color);
+        font-size: 1.8rem;
+        border-bottom: 3px solid var(--primary-color);
+        padding-bottom: 0.5rem;
+        margin-top: 2.5rem;
+        font-weight: 700;
+      }
+      h3 {
+        color: var(--primary-color);
+        font-size: 1.4rem;
+        margin-top: 1.5rem;
+        font-weight: 600;
+      }
+      p {
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+      }
+      ul {
+        margin-left: 1.5rem;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 0.5rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+      }
+      th, td {
+        padding: 1rem 0.75rem;
+        border: 1px solid var(--border-color);
+        text-align: left;
+      }
+      th {
+        background-color: var(--primary-color);
+        color: white;
+        font-weight: 500;
+        text-align: center;
+      }
+      tbody tr:nth-child(even) {
+        background-color: var(--light-gray);
+      }
+      .cta-section {
+        background-color: var(--accent-color);
+        padding: 2rem;
+        text-align: center;
+        border-radius: 12px;
+        margin-top: 3rem;
+      }
+      .cta-button {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: white;
+        font-weight: 700;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        margin: 1rem 0;
+        transition: background-color 0.3s ease;
+      }
+      .cta-button:hover {
+        background-color: #003366;
+      }
+      .keyword-tags {
+        margin: 1.5rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .keyword-tags a {
+        background-color: var(--accent-color);
+        color: var(--primary-color);
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+      .keyword-tags a:hover {
+        background-color: #d1eaff;
+      }
+      .callout {
+        background-color: var(--accent-color);
+        border-left: 5px solid var(--primary-color);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        border-radius: 4px;
+      }
+      .faq-list dt {
+        font-weight: 700;
+        margin-top: 1.5rem;
+        cursor: pointer;
+        color: var(--primary-color);
+        padding: 1rem;
+        background-color: var(--light-gray);
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+      }
+      .faq-list dt:hover {
+        background-color: #e0e0e0;
+      }
+      .faq-list dd {
+        margin-left: 0;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border: 1px solid var(--border-color);
+        border-top: none;
+        background-color: white;
+        display: none;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+      .faq-list dt.active {
+        background-color: var(--primary-color);
+        color: white;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      .faq-list dt.active + dd {
+        display: block;
+      }
+      footer {
+        text-align: center;
+        padding: 1rem;
+        font-size: 0.9rem;
+        color: #777;
+        background-color: #f0f0f0;
+        margin-top: 2rem;
+      }
+
+      /* Form styling for engagement */
+      .comparison-form {
+        margin-top: 2rem;
+        padding: 2rem;
+        background-color: var(--accent-color);
+        border-radius: 10px;
+        border: 1px solid #cceeff;
+      }
+      .comparison-form label {
+        display: block;
+        font-weight: 500;
+        margin-top: 1rem;
+        color: var(--font-color);
+      }
+      .comparison-form input[type="text"],
+      .comparison-form input[type="date"],
+      .comparison-form select,
+      .comparison-form textarea {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-top: 0.5rem;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+      .comparison-form button {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        margin-top: 1.5rem;
+        transition: background-color 0.3s ease;
+      }
+      .comparison-form button:hover {
+        background-color: #003366;
+      }
+      .graph-container {
+        margin-top: 2rem;
+        text-align: center;
+        background-color: var(--light-gray);
+        padding: 2rem;
+        border-radius: 8px;
+      }
+
+      /* Internal link style (for SEO optimization) */
+      .content a {
+        color: var(--primary-color);
+        text-decoration: underline;
+        font-weight: 500;
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>2026년 10월 자동차보험 혜택 비교견적 가이드</h1>
+        <p>지금 바로 가장 저렴한 자동차보험료와 최대 할인 혜택을 찾아보세요.</p>
+        <nav>
+            <ul>
+                <li><a href="#intro">비교견적 소개</a></li>
+                <li><a href="#discount">주요 할인 혜택</a></li>
+                <li><a href="#comparison">보험료 비교 기준</a></li>
+                <li><a href="#faq">자주 묻는 질문</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section id="intro">
+            <h2>2026년 10월 자동차보험 비교견적의 중요성</h2>
+            <p><strong>자동차보험 갱신</strong> 시기가 다가오면 많은 분들이 <strong>자동차보험료</strong> 때문에 고민합니다. 특히 <strong>2026년 10월</strong>은 자동차보험 시장의 다양한 <strong>할인 혜택</strong>과 프로모션이 집중되는 시기이므로, 현명한 소비를 위해 꼼꼼한 비교가 필수적입니다. 단순히 <strong>저렴한곳</strong>만 찾기보다는, 개인에게 필요한 보장 항목과 <strong>할인 특약</strong>을 확인하여 가장 합리적인 <strong>자동차보험 가입</strong>을 결정해야 합니다.</p>
+            <p>최근에는 <strong>다이렉트 자동차보험</strong> 가입이 대세가 되면서, 기존의 오프라인 채널 대비 <strong>평균 15~20% 저렴한 비용</strong>으로 가입이 가능해졌습니다. 하지만 각 보험사별로 제공하는 <strong>마일리지 할인율</strong>, <strong>블랙박스 할인</strong>, <strong>자녀 할인 특약</strong> 등의 <strong>혜택</strong>이 모두 다르기 때문에, 여러 보험사의 <strong>자동차보험료 견적</strong>을 비교해 보는 것이 중요합니다. 저희는 <strong>자동차보험 순위</strong>와 함께 각 보험사별 <strong>장점과 단점</strong>을 명확히 제시하여 고객님께 최적의 선택지를 제공합니다.</p>
+
+            <div class="keyword-tags" aria-label="연관 검색 키워드">
+                <a href="#comparison">자동차보험 가격 비교</a>
+                <a href="#discount">마일리지 특약 할인</a>
+                <a href="#discount">블랙박스 할인율</a>
+                <a href="#comparison">가장 싼 자동차보험 순위</a>
+                <a href="#form">다이렉트 자동차보험 견적</a>
+                <a href="#faq">자동차보험 가입 시기</a>
+                <a href="#comparison">자동차보험료 평균</a>
+                <a href="#discount">자녀 할인 특약</a>
+                <a href="#discount">첨단 안전장치 할인</a>
+                <a href="#comparison">보험사별 장단점</a>
+                <a href="#comparison">자동차보험 내돈내산 후기</a>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="discount">
+            <h2>주요 할인 특약 비교 분석: 2026년 10월 최신 혜택</h2>
+            <p>자동차보험 <strong>할인 혜택</strong>을 최대로 받기 위해서는 각 보험사가 제공하는 다양한 <strong>특약</strong>을 숙지하는 것이 중요합니다. <strong>2026년도</strong>에 새롭게 추가되거나 할인율이 변경된 특약들이 있는지 꼼꼼히 확인하고, 나에게 적용 가능한 <strong>장점</strong>이 무엇인지 파악해야 합니다. 아래에서 주요 <strong>자동차보험 할인 특약</strong>의 <strong>차이점</strong>과 <strong>장단점</strong>을 비교하여 <strong>가장 저렴한</strong> 보험료를 만들 수 있는 방법을 안내해 드립니다.</p>
+
+            <h3>1. 주행거리 마일리지 할인 특약</h3>
+            <p>가장 대중적이며 효과가 큰 <strong>마일리지 특약</strong>은 연간 주행거리에 따라 <strong>보험료</strong>를 환급해주는 방식입니다. 주행거리가 짧을수록 환급률이 높아지며, 보험사별로 할인 구간과 환급률이 다릅니다. 예를 들어, A보험사는 2,000km 이하 주행 시 30%를 할인해 주지만, B보험사는 4,000km 이하 주행 시 25%를 할인해 줄 수 있습니다. <strong>마일리지 할인율</strong>이 높은 보험사를 선택하는 것이 <strong>저렴한</strong> 보험료를 만드는 핵심입니다. 일반적으로 주행량이 적은 고객에게 큰 <strong>혜택</strong>이 됩니다.</p>
+
+            <h3>2. 첨단 안전장치 할인 특약 (블랙박스 포함)</h3>
+            <p>차량에 첨단 안전장치가 장착된 경우, 사고 위험률 감소에 기여한다고 판단하여 <strong>보험료</strong>를 할인해 줍니다. 특히 **블랙박스 할인**은 거의 모든 보험사에서 기본적으로 제공하고 있으며, 차선이탈 경보 장치(LDWS), 전방 충돌 방지 보조 장치(FCA) 등의 ADAS(첨단 운전자 보조 시스템) 장착 시 추가 할인을 받을 수 있습니다. <strong>블랙박스 할인율</strong>은 보험사마다 3%에서 7%까지 <strong>차이점</strong>이 있습니다.</p>
+
+            <h3>3. 자녀 할인 특약 (베이비 인 카)</h3>
+            <p><strong>자녀 할인 특약</strong>은 임신 중이거나 만 6세 이하의 자녀가 있는 가입자에게 보험료 할인을 제공하는 <strong>혜택</strong>입니다. 보험사들은 자녀가 있는 운전자의 안전운전 성향이 높다고 판단하여 할인을 제공합니다. <strong>자녀 할인율</strong>은 5%에서 15%까지 큰 폭으로 <strong>차이점</strong>이 발생하며, 태아부터 적용되는 경우도 있어 꼼꼼한 확인이 필요합니다.</p>
+
+            <div class="callout">
+                <h4>Tip: 다이렉트 자동차보험과 오프라인 보험의 장단점 비교</h4>
+                <p><strong>다이렉트 보험의 장점</strong>: 중개 수수료가 없어 <strong>보험료</strong>가 <strong>저렴</strong>합니다. 모바일이나 온라인으로 간편하게 <strong>가입</strong> 및 관리가 가능합니다. <strong>다이렉트 자동차보험</strong>은 <strong>내돈내산</strong> 고객 후기에서 만족도가 높은 편입니다.<br>
+                <strong>오프라인 보험의 장점</strong>: 담당 설계사를 통해 1:1 맞춤 상담 및 사고 처리 지원을 받을 수 있습니다. 다만 <strong>다이렉트 보험</strong> 대비 <strong>평균</strong> <strong>보험료</strong>가 높다는 <strong>단점</strong>이 있습니다.</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="comparison">
+            <h2>보험료 비교 기준 및 합리적인 견적 찾는 방법</h2>
+            <p><strong>자동차보험료</strong>는 가입자의 운전 경력, 나이, 사고 이력, 차량 모델, 보장 범위 설정 등 수많은 요인에 의해 결정됩니다. <strong>2026년 10월</strong> 기준으로 <strong>자동차보험료 평균</strong>을 묻는 질문이 많지만, 개인차가 워낙 크기 때문에 <strong>예상 금액</strong>을 산정하기 어렵습니다. 따라서 자신에게 맞는 <strong>견적</strong>을 직접 받아보는 것이 가장 정확합니다.</p>
+
+            <h3>1. 자동차보험료 산정 주요 요인 분석</h3>
+            <p><strong>가입</strong> 시 다음 5가지 요소를 기준으로 <strong>보험료</strong>가 달라집니다. 각 요소의 <strong>장단점</strong>을 고려하여 합리적인 <strong>가입</strong> 설계를 하는 것이 중요합니다.</p>
+            <ul>
+                <li><strong>운전자 범위 설정</strong>: 운전 가능한 사람의 범위를 제한할수록 <strong>보험료</strong>가 <strong>저렴</strong>해집니다. (예: 1인 한정, 부부 한정, 가족 한정)</li>
+                <li><strong>운전 경력 및 연령</strong>: 운전 경력이 오래될수록, 만 30세 이상으로 연령을 한정할수록 <strong>할인 혜택</strong>이 적용됩니다.</li>
+                <li><strong>사고 이력 및 할인/할증 등급</strong>: 무사고 운전 경력은 <strong>할인</strong> 요인이지만, 사고 이력은 <strong>할증</strong> 요인으로 작용하여 <strong>보험료</strong>가 상승할 수 있습니다.</li>
+                <li><strong>차량 모델 및 가치</strong>: 차량 가액이 높을수록, 수리비가 비싼 외산차일수록 <strong>보험료</strong>가 높아집니다.</li>
+                <li><strong>담보 설정 범위</strong>: 자기차량손해(자차보험), 자기신체사고(자손) 또는 자동차상해(자상) 등 보장 범위를 어떻게 설정하느냐에 따라 <strong>비용</strong>이 크게 달라집니다.</li>
+            </ul>
+
+            <h3>2. 보험사별 자동차보험료 순위 비교 (2026년 10월 기준)</h3>
+            <p><strong>자동차보험 순위</strong>는 매번 변동되지만, <strong>10월</strong> 현재 <strong>가장 저렴한</strong> 보험사를 찾기 위해서는 <strong>견적</strong> 비교가 필수입니다. 아래는 가상의 데이터를 기반으로 한 <strong>다이렉트 자동차보험</strong> <strong>평균</strong> 가격 비교표입니다. 실제 <strong>금액</strong>은 개인 조건에 따라 달라질 수 있으므로 참고용으로 활용하시기 바랍니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>보험사</th>
+                        <th>평균 보험료 (A고객 기준)</th>
+                        <th>주요 할인 혜택</th>
+                        <th>장단점</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>A보험사</td>
+                        <td>550,000원</td>
+                        <td>마일리지 (최대 35%), 자녀 할인 (최대 10%)</td>
+                        <td>마일리지 할인율이 높아 주행거리가 짧은 고객에게 유리</td>
+                    </tr>
+                    <tr>
+                        <td>B보험사</td>
+                        <td>580,000원</td>
+                        <td>블랙박스 할인 (7%), 안전장치 할인 (12%)</td>
+                        <td>첨단 안전장치 할인이 강점, 다이렉트 가입 편리성 우수</td>
+                    </tr>
+                    <tr>
+                        <td>C보험사</td>
+                        <td>610,000원</td>
+                        <td>마일리지 (최대 30%), 무사고 할인율 높음</td>
+                        <td>사고 이력이 없는 운전자에게 <strong>저렴한</strong> 편, 고객 후기가 좋음</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="callout">
+                <h4>Tip: 자동차보험 견적 비교 시 반드시 확인해야 할 사항</h4>
+                <p><strong>자동차보험 견적</strong>을 비교할 때 <strong>가격</strong>만 보지 마시고, <strong>자기부담금</strong> 설정이나 <strong>대물배상 한도</strong> 등을 동일하게 설정하여 비교해야 정확한 <strong>차이점</strong>을 파악할 수 있습니다. <strong>예상 금액</strong>을 꼼꼼히 체크하여 나중에 추가 <strong>비용</strong>이 발생하지 않도록 하세요.</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="external-links">
+            <h2>신뢰할 수 있는 외부 정보 및 참고 자료</h2>
+            <p>정확하고 신뢰성 있는 <strong>자동차보험 정보</strong>를 확인하는 것은 현명한 <strong>가입</strong>의 첫걸음입니다. 다음은 <strong>자동차보험</strong> 관련 공신력 있는 외부 사이트 목록입니다.</p>
+            <ul>
+                <li><strong>금융감독원 금융소비자정보 포털 '파인'</strong>: 보험상품 비교 공시 및 보험사별 민원 현황을 확인할 수 있습니다.</li>
+                <li><strong>보험개발원 자동차보험 비교 서비스</strong>: <strong>보험개발원</strong>에서 제공하는 공식 비교 서비스로, 각 보험사의 <strong>보험료</strong>를 한눈에 비교할 수 있습니다.</li>
+                <li><strong>Namuwiki (나무위키) 자동차보험 항목</strong>: 자동차보험의 기본적인 개념, <strong>장단점</strong>, 역사 등 전반적인 정보를 제공합니다.</li>
+                <li><strong>손해보험협회 공시자료</strong>: 보험사별 상품정보, <strong>할인 혜택</strong>, 공시이율 등을 확인할 수 있습니다.</li>
+                <li><strong>국토교통부 자동차관리시스템</strong>: 차량 기본 정보 및 <strong>이력</strong>을 확인할 수 있으며, <strong>보험료</strong> 산정에 참고할 수 있습니다.</li>
+            </ul>
+            <p>이러한 공신력 있는 자료들을 통해 <strong>자동차보험</strong> 상품의 세부적인 <strong>장단점</strong>을 파악하고, <strong>내돈내산 후기</strong> 등을 참고하여 자신에게 맞는 <strong>보험사 순위</strong>를 매겨보시기 바랍니다.</p>
+        </section>
+
+        <hr>
+
+        <section id="form">
+            <h2>2026년 10월 자동차보험료 실시간 비교 견적 요청 (체류시간 증가 유도)</h2>
+            <p>정확한 <strong>자동차보험료</strong> <strong>예상 금액</strong>을 확인하려면 가입자님의 차량 및 운전 조건에 맞는 <strong>견적</strong>을 받아보는 것이 가장 좋습니다. 아래 입력란에 간단한 정보를 남겨주시면 <strong>다이렉트 자동차보험</strong>의 <strong>가장 저렴한</strong> <strong>가격</strong>을 찾을 수 있도록 돕겠습니다. 이 과정을 통해 <strong>보험료 평균</strong>을 직접 체감하고, 각 보험사의 <strong>장단점</strong>을 비교하여 <strong>가입</strong> 여부를 결정하세요.</p>
+            <form class="comparison-form" action="#" method="post">
+                <label for="carModel">차량 모델명 (예: 2024년식 쏘나타)</label>
+                <input type="text" id="carModel" name="carModel" placeholder="정확한 차량 모델과 연식을 입력해주세요." required>
+
+                <label for="birthDate">생년월일 (예: 19901010)</label>
+                <input type="text" id="birthDate" name="birthDate" placeholder="8자리 숫자로 입력해주세요." required>
+
+                <label for="driverAge">운전자 연령 한정</label>
+                <select id="driverAge" name="driverAge" required>
+                    <option value="">선택</option>
+                    <option value="single">만 30세 이상</option>
+                    <option value="couple">만 35세 이상</option>
+                    <option value="family">만 40세 이상</option>
+                </select>
+
+                <label for="specialOffer">적용 가능한 할인 혜택 특약 선택 (중복 선택 가능)</label>
+                <textarea id="specialOffer" name="specialOffer" rows="3" placeholder="예: 마일리지 특약, 자녀 할인 특약, 블랙박스 할인 등"></textarea>
+
+                <label for="contactInfo">연락처</label>
+                <input type="text" id="contactInfo" name="contactInfo" placeholder="010-XXXX-XXXX" required>
+
+                <button type="submit">실시간 비교견적 요청하기</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section id="faq">
+            <h2>자주 묻는 질문 (FAQ)</h2>
+            <dl class="faq-list">
+                <dt tabindex="0" aria-expanded="false">자동차보험 갱신 시기는 언제인가요?</dt>
+                <dd><strong>자동차보험 갱신</strong>은 만기일로부터 30일 전부터 가능합니다. 갱신 시기를 놓치면 <strong>과태료</strong>가 부과될 수 있으므로, 만기일 2주 전에 미리 <strong>비교견적</strong>을 받아보는 것이 좋습니다.</dd>
+                <dt tabindex="0" aria-expanded="false">다이렉트 보험과 설계사 가입 보험의 <strong>장단점</strong>은 무엇인가요?</dt>
+                <dd><strong>다이렉트 보험의 장점</strong>은 <strong>보험료</strong>가 <strong>저렴</strong>하다는 점입니다. 반면 <strong>설계사 가입 보험의 장점</strong>은 사고 발생 시 <strong>전문가</strong>의 도움을 받을 수 있다는 점입니다. <strong>가격</strong> <strong>차이점</strong>은 <strong>평균</strong> 15~20% 수준입니다.</dd>
+                <dt tabindex="0" aria-expanded="false"><strong>마일리지 특약</strong>은 주행거리가 짧아야만 유리한가요?</dt>
+                <dd>네, 맞습니다. <strong>마일리지 특약</strong>은 연간 주행거리가 짧은 운전자에게 <strong>할인 혜택</strong>이 집중됩니다. 주행거리가 길다면 마일리지 특약이 <strong>장점</strong>이 되지 않을 수 있으므로 다른 <strong>할인 특약</strong>을 확인하는 것이 좋습니다.</dd>
+                <dt tabindex="0" aria-expanded="false"><strong>자동차보험료</strong> <strong>평균</strong> <strong>금액</strong>은 얼마인가요?</dt>
+                <dd><strong>자동차보험료</strong>는 가입자의 운전 경력, 나이, 사고 유무, 차량 가액, <strong>할인 특약</strong> 적용 여부 등 수많은 변수에 따라 달라집니다. 따라서 정확한 <strong>평균</strong> <strong>금액</strong>을 제시하기 어렵습니다. <strong>견적</strong>을 직접 받아 <strong>예상 금액</strong>을 확인하는 것이 유일한 방법입니다.</dd>
+                <dt tabindex="0" aria-expanded="false"><strong>2026년 10월</strong>에 특별한 <strong>할인 이벤트</strong>가 있나요?</dt>
+                <dd><strong>10월</strong>은 갱신 고객이 많은 시기여서 일부 보험사에서 특별한 <strong>할인 이벤트</strong>나 <strong>프로모션</strong>을 진행할 수 있습니다. <strong>비교견적</strong> 서비스를 통해 <strong>가장 저렴한</strong> 보험사를 찾는 과정에서 이러한 <strong>혜택</strong>도 함께 확인해 드립니다.</dd>
+            </dl>
+        </section>
+
+        <section id="conclusion">
+            <h2>결론: 현명한 2026년 자동차보험 가입 전략</h2>
+            <p><strong>자동차보험</strong> <strong>가입</strong>은 의무이지만, <strong>비용</strong>을 줄일 수 있는 방법은 많습니다. <strong>2026년 10월</strong>에 <strong>보험료</strong>를 절약하기 위해서는 <strong>다이렉트 보험</strong> <strong>비교견적</strong>을 통해 각 보험사의 <strong>할인 혜택</strong>과 <strong>장단점</strong>을 파악하는 것이 중요합니다. 특히 <strong>마일리지 특약</strong>, <strong>블랙박스 할인</strong>, <strong>자녀 할인 특약</strong> 등을 꼼꼼히 체크하여 나에게 맞는 <strong>저렴한곳</strong>을 찾아야 합니다. <strong>자동차보험료</strong> <strong>순위</strong>에만 의존하기보다, 나에게 필요한 보장과 <strong>할인</strong>을 결합하여 합리적인 <strong>가입</strong>을 하시기 바랍니다.</p>
+        </section>
+
+        <div class="cta-section">
+            <p>지금 바로 2026년 10월 최신 <strong>자동차보험료 견적</strong>을 비교해보세요.</p>
+            <a href="#form" class="cta-button">무료 견적 신청하고 <strong>할인 혜택</strong> 확인하기</a>
+        </div>
     </main>
-  </body>
-</html>
+
+    <script>
+      // FAQ 아코디언 기능 (접기/펼치기)
+      document.querySelectorAll('.faq-list dt').forEach((dt) => {
+        dt.addEventListener('click', () => {
+          dt.classList.toggle('active');
+          let dd = dt.nextElementSibling;
+          let expanded = dt.getAttribute('aria-expanded') === 'true';
+          dt.setAttribute('aria-expanded', !expanded);
+          if (expanded) {
+            dd.style.display = 'none';
+          } else {
+            dd.style.display = 'block';
+          }
+        });
+        dt.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            dt.click();
+          }
+        });
+      });
+    </script>
+
+  
